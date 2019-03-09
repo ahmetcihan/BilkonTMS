@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qss/qmc-metal/qmc.qss</file>
+        <file>qss/qmc-sandy/qmc.qss</file>
+        <file>qss/qmc2-black-0.10/qmc2-black-0.10.qss</file>
+        <file>qss/qmc2-black-fast/qmc2-black-0.10.qss</file>
+        <file>qss/qmc2-fire-0.8/qmc2-fire-0.8.qss</file>
+        <file>qss/darkOrange/darkOrange.qss</file>
+        <file>qss/coffee/coffee.qss</file>
+        <file>qss/pagefold/pagefold.qss</file>
+        <file>qss/QDark/QDark.qss</file>
+        <file>qss/denemeci/denemeci.qss</file>
+    </qresource>
+</RCC>
