@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>540</height>
+    <width>800</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>900</width>
-      <height>540</height>
+      <width>800</width>
+      <height>480</height>
      </rect>
     </property>
     <property name="font">
@@ -35,7 +35,7 @@
 </string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -44,38 +44,20 @@
      <widget class="QWidget" name="plot_widget" native="true">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>10</y>
-        <width>500</width>
-        <height>300</height>
+        <x>250</x>
+        <y>5</y>
+        <width>540</width>
+        <height>337</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_name">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>380</y>
-        <width>181</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Current test No</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_current_test_no">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>380</y>
-        <width>120</width>
-        <height>40</height>
+        <x>5</x>
+        <y>344</y>
+        <width>240</width>
+        <height>18</height>
        </rect>
       </property>
       <property name="font">
@@ -84,34 +66,16 @@
        </font>
       </property>
       <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_name_2">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>420</y>
-        <width>181</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Test Status</string>
+       <string>Test No</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_test_status">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>420</y>
-        <width>181</width>
-        <height>40</height>
+        <x>5</x>
+        <y>364</y>
+        <width>240</width>
+        <height>18</height>
        </rect>
       </property>
       <property name="font">
@@ -120,16 +84,16 @@
        </font>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>Status</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_communication">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>450</y>
+        <x>550</x>
+        <y>395</y>
         <width>250</width>
-        <height>20</height>
+        <height>18</height>
        </rect>
       </property>
       <property name="font">
@@ -144,8 +108,8 @@
      <widget class="QGroupBox" name="groupBox_main_ch4">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>284</y>
+        <x>5</x>
+        <y>277</y>
         <width>240</width>
         <height>65</height>
        </rect>
@@ -230,8 +194,8 @@
      <widget class="QGroupBox" name="groupBox_main_load">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>12</y>
+        <x>5</x>
+        <y>5</y>
         <width>240</width>
         <height>65</height>
        </rect>
@@ -303,30 +267,12 @@
         <string>kN</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_tare_load">
-       <property name="geometry">
-        <rect>
-         <x>178</x>
-         <y>2</y>
-         <width>60</width>
-         <height>61</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>TARE</string>
-       </property>
-      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_main_ch2">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>148</y>
+        <x>5</x>
+        <y>141</y>
         <width>240</width>
         <height>65</height>
        </rect>
@@ -411,8 +357,8 @@
      <widget class="QGroupBox" name="groupBox_main_ch3">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>216</y>
+        <x>5</x>
+        <y>209</y>
         <width>240</width>
         <height>65</height>
        </rect>
@@ -494,33 +440,60 @@
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_displacement">
+     <widget class="QLabel" name="label_area">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>80</y>
+        <x>5</x>
+        <y>384</y>
+        <width>240</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Area</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_main_stress">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>73</y>
         <width>240</width>
         <height>65</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>17</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
+        <italic>false</italic>
         <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
        </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox{  margin-top: 0px;}
 </string>
       </property>
       <property name="title">
-       <string>DISPLACEMENT</string>
+       <string>STRESS</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
       </property>
-      <widget class="QLabel" name="label_main_displacement">
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <widget class="QLabel" name="label_main_stress">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -543,25 +516,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_tare_disp">
-       <property name="geometry">
-        <rect>
-         <x>178</x>
-         <y>2</y>
-         <width>60</width>
-         <height>61</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>TARE</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_main_displacement_unit">
+      <widget class="QLabel" name="label_main_stress_unit">
        <property name="geometry">
         <rect>
          <x>120</x>
@@ -572,85 +527,13 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>15</pointsize>
+         <pointsize>18</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>mm</string>
+        <string>MPa</string>
        </property>
       </widget>
-     </widget>
-     <widget class="QLabel" name="label_area">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>410</y>
-        <width>120</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_name_3">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>410</y>
-        <width>181</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Area</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_stress">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>370</y>
-        <width>120</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_name_5">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>370</y>
-        <width>181</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>STRESS</string>
-      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">

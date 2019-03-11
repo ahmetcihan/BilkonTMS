@@ -18,6 +18,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initilize_plot();
     ui->label_communication->setText("No communication");
+
+    connect(ui->pushButton_tare_ch2,SIGNAL(clicked()),this,SLOT(tare_ch2()));
+    connect(ui->pushButton_tare_ch3,SIGNAL(clicked()),this,SLOT(tare_ch3()));
+    connect(ui->pushButton_tare_ch4,SIGNAL(clicked()),this,SLOT(tare_ch4()));
+
+}
+void MainWindow::tare_ch2(void){
+    remote->set("main.tare.ch2", "1");
+}
+void MainWindow::tare_ch3(void){
+    remote->set("main.tare.ch3", "1");
+}
+void MainWindow::tare_ch4(void){
+    remote->set("main.tare.ch4", "1");
 }
 void MainWindow::init_THEME(void){
     theme_index = 4;
@@ -75,6 +89,7 @@ void MainWindow::set_gradient(int val){
         file.setFileName(":/qss/denemeci/denemeci.qss");
         break;
     }
+
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
     setStyleSheet(styleSheet);
@@ -168,33 +183,29 @@ void MainWindow::periodic_response_handler(QByteArray datagram){
         my_resp._integer = ((unsigned char)datagram[10] + ((unsigned char)datagram[11] << 8) + ((unsigned char)datagram[12] << 16) + ((unsigned char)datagram[13] << 24));
         real_time.area = my_resp._float;
 
-        my_resp._integer = ((unsigned char)datagram[14] + ((unsigned char)datagram[15] << 8) + ((unsigned char)datagram[16] << 16) + ((unsigned char)datagram[17] << 24));
+        my_resp._integer = ((unsigned char)datagram[15] + ((unsigned char)datagram[16] << 8) + ((unsigned char)datagram[17] << 16) + ((unsigned char)datagram[18] << 24));
         real_time.load = my_resp._float;
 
-        my_resp._integer = ((unsigned char)datagram[18] + ((unsigned char)datagram[19] << 8) + ((unsigned char)datagram[20] << 16) + ((unsigned char)datagram[21] << 24));
-        real_time.stress = my_resp._float;
-
-        my_resp._integer = ((unsigned char)datagram[22] + ((unsigned char)datagram[23] << 8) + ((unsigned char)datagram[24] << 16) + ((unsigned char)datagram[25] << 24));
+        my_resp._integer = ((unsigned char)datagram[20] + ((unsigned char)datagram[21] << 8) + ((unsigned char)datagram[22] << 16) + ((unsigned char)datagram[23] << 24));
         real_time.ch2 = my_resp._float;
 
-        my_resp._integer = ((unsigned char)datagram[26] + ((unsigned char)datagram[27] << 8) + ((unsigned char)datagram[28] << 16) + ((unsigned char)datagram[29] << 24));
+        my_resp._integer = ((unsigned char)datagram[25] + ((unsigned char)datagram[26] << 8) + ((unsigned char)datagram[27] << 16) + ((unsigned char)datagram[28] << 24));
         real_time.ch3 = my_resp._float;
 
         my_resp._integer = ((unsigned char)datagram[30] + ((unsigned char)datagram[31] << 8) + ((unsigned char)datagram[32] << 16) + ((unsigned char)datagram[33] << 24));
         real_time.ch4 = my_resp._float;
 
-        my_resp._integer = ((unsigned char)datagram[34] + ((unsigned char)datagram[35] << 8) + ((unsigned char)datagram[36] << 16) + ((unsigned char)datagram[37] << 24));
-        real_time.encoder = my_resp._float;
+        my_resp._integer = ((unsigned char)datagram[35] + ((unsigned char)datagram[36] << 8) + ((unsigned char)datagram[37] << 16) + ((unsigned char)datagram[38] << 24));
+        real_time.stress = my_resp._float;
 
-        ui->label_current_test_no->setText(QString::number(real_time.test_no,10));
+        ui->label_current_test_no->setText(QString("Test No : ") + QString::number(real_time.test_no,10));
         ui->label_test_status->setText(real_time.status);
-        ui->label_area->setText(QString::number(real_time.area,'f',3));
+        ui->label_area->setText(QString("Area : ") + QString::number(real_time.area,'f',3));
         ui->label_main_load->setText(QString::number(real_time.load,'f',3));
-        ui->label_stress->setText(QString::number(real_time.stress,'f',3));
+        ui->label_main_stress->setText(QString::number(real_time.stress,'f',3));
         ui->label_main_ch2->setText(QString::number(real_time.ch2,'f',3));
         ui->label_main_ch3->setText(QString::number(real_time.ch3,'f',3));
         ui->label_main_ch4->setText(QString::number(real_time.ch4,'f',3));
-        ui->label_main_displacement->setText(QString::number(real_time.encoder,'f',3));
         plot_graph();
     }
     else{

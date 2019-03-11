@@ -42,7 +42,6 @@ public:
         double ch2;
         double ch3;
         double ch4;
-        double encoder;
     };
     struct _real_time real_time;
 
@@ -52,6 +51,9 @@ public slots:
     void read_parameter(void);
     void periodic_response_handler(QByteArray datagram);
     void set_gradient(int val);
+    void tare_ch2(void);
+    void tare_ch3(void);
+    void tare_ch4(void);
 
 private:
     Ui::MainWindow *ui;
