@@ -22,7 +22,68 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_tare_ch2,SIGNAL(clicked()),this,SLOT(tare_ch2()));
     connect(ui->pushButton_tare_ch3,SIGNAL(clicked()),this,SLOT(tare_ch3()));
     connect(ui->pushButton_tare_ch4,SIGNAL(clicked()),this,SLOT(tare_ch4()));
+    connect(ui->pushButton_start_test,SIGNAL(clicked()),this,SLOT(start_test()));
+    connect(ui->pushButton_stop_motor,SIGNAL(clicked()),this,SLOT(stop_test()));
+    connect(ui->pushButton_pause_test,SIGNAL(clicked()),this,SLOT(pause_test()));
+    connect(ui->pushButton_refresh,SIGNAL(clicked()),this,SLOT(refresh_test()));
 
+    connect(this, SIGNAL(test_value_tracker(QString)),this, SLOT(test_value_handler(QString)));
+
+
+}
+void MainWindow::test_value_handler(QString val){
+    if(real_time.status == "Test is STOPPED"){
+        ui->pushButton_start_test->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_start.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_pause_test->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_pause-silver.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_stop_motor->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_stop-silver.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_refresh->hide();
+
+    }
+    else if(real_time.status == "Test is RUNNING"){
+        ui->pushButton_start_test->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_start-silver.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_pause_test->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_pause.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_stop_motor->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_stop.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_refresh->hide();
+    }
+    else if(real_time.status == "Test is PAUSED"){
+        ui->pushButton_start_test->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_start.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_pause_test->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_pause.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_stop_motor->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_stop.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_refresh->hide();
+    }
+    else if(real_time.status == "Test is FINISHED"){
+        ui->pushButton_pause_test->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_pause-silver.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_stop_motor->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_stop-silver.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_refresh->setStyleSheet("min-width: 50px; min-height: 50px;"
+                                                    "border-image: url(:sari_refresh.png);"
+                                                    "border-width: 0px ;");
+        ui->pushButton_refresh->show();
+    }
+    else {
+
+    }
 }
 void MainWindow::tare_ch2(void){
     remote->set("main.tare.ch2", "1");
@@ -32,6 +93,18 @@ void MainWindow::tare_ch3(void){
 }
 void MainWindow::tare_ch4(void){
     remote->set("main.tare.ch4", "1");
+}
+void MainWindow::start_test(void){
+    remote->set("main.start_test", "1");
+}
+void MainWindow::stop_test(void){
+    remote->set("main.stop_test", "1");
+}
+void MainWindow::pause_test(void){
+    remote->set("main.pause_test", "1");
+}
+void MainWindow::refresh_test(void){
+    remote->set("main.refresh", "1");
 }
 void MainWindow::init_THEME(void){
     theme_index = 4;
@@ -207,6 +280,7 @@ void MainWindow::periodic_response_handler(QByteArray datagram){
         ui->label_main_ch3->setText(QString::number(real_time.ch3,'f',3));
         ui->label_main_ch4->setText(QString::number(real_time.ch4,'f',3));
         plot_graph();
+        emit test_value_tracker(real_time.status);
     }
     else{
         ui->label_communication->setText("No communication");

@@ -10,5 +10,12 @@
         <file>qss/pagefold/pagefold.qss</file>
         <file>qss/QDark/QDark.qss</file>
         <file>qss/denemeci/denemeci.qss</file>
+        <file>sari_pause-silver.png</file>
+        <file>sari_pause.png</file>
+        <file>sari_refresh.png</file>
+        <file>sari_start-silver.png</file>
+        <file>sari_start.png</file>
+        <file>sari_stop-silver.png</file>
+        <file>sari_stop.png</file>
     </qresource>
 </RCC>

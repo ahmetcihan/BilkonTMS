@@ -44,9 +44,11 @@ public:
         double ch4;
     };
     struct _real_time real_time;
-
+signals:
+    void test_value_tracker(QString val);
 
 public slots:
+    void test_value_handler(QString val);
     void start_comm(void);
     void read_parameter(void);
     void periodic_response_handler(QByteArray datagram);
@@ -54,6 +56,10 @@ public slots:
     void tare_ch2(void);
     void tare_ch3(void);
     void tare_ch4(void);
+    void start_test(void);
+    void stop_test(void);
+    void pause_test(void);
+    void refresh_test(void);
 
 private:
     Ui::MainWindow *ui;

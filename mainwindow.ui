@@ -87,24 +87,6 @@
        <string>Status</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_communication">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>395</y>
-        <width>250</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>No Communication</string>
-      </property>
-     </widget>
      <widget class="QGroupBox" name="groupBox_main_ch4">
       <property name="geometry">
        <rect>
@@ -534,6 +516,105 @@
         <string>MPa</string>
        </property>
       </widget>
+     </widget>
+     <widget class="QPushButton" name="pushButton_stop_motor">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>345</y>
+        <width>65</width>
+        <height>65</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(201, 174, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoRepeat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_start_test">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>345</y>
+        <width>65</width>
+        <height>65</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_pause_test">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>345</y>
+        <width>65</width>
+        <height>65</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_refresh">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>345</y>
+        <width>65</width>
+        <height>65</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_communication">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>390</y>
+        <width>250</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>No Communication</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
