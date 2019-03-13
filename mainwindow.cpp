@@ -29,7 +29,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this, SIGNAL(test_value_tracker(QString)),this, SLOT(test_value_handler(QString)));
 
-
 }
 void MainWindow::test_value_handler(QString val){
     if(real_time.status == "Test is STOPPED"){
