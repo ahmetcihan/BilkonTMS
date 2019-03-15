@@ -15,7 +15,11 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     remoteconnection.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    ethernet.cpp \
+    plot.cpp \
+    theme.cpp \
+    process.cpp
 
 HEADERS  += mainwindow.h \
     remoteconnection.h \

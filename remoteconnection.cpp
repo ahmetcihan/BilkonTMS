@@ -6,8 +6,6 @@
 RemoteConnection::RemoteConnection(int port, QObject *parent) :
     QUdpSocket(parent)
 {
-    qDebug(__FUNCTION__);
-
     if (!bind())
         qDebug("error binding remote connection object");
     connect(this, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
@@ -15,10 +13,7 @@ RemoteConnection::RemoteConnection(int port, QObject *parent) :
     dstPort = port;
 }
 
-static bool wait(QEventLoop *el, int timeout)
-{
-    qDebug(__FUNCTION__);
-
+static bool wait(QEventLoop *el, int timeout){
     QTimer t;
     QObject::connect(&t, SIGNAL(timeout()), el, SLOT(quit()));
     if (timeout)
@@ -28,10 +23,7 @@ static bool wait(QEventLoop *el, int timeout)
         return true;
     return false;
 }
-QString RemoteConnection::get(const QString &key)
-{
-    qDebug(__FUNCTION__);
-
+QString RemoteConnection::get(const QString &key){
     QString str = QString("get %1\n").arg(key);
     writeDatagram(str.toUtf8(), target, dstPort);
     if (!wait(&el, 100))
@@ -45,29 +37,18 @@ QString RemoteConnection::get(const QString &key)
     }
     return "";
 }
-
-int RemoteConnection::set(const QString &key, const QString &value)
-{
-    qDebug(__FUNCTION__);
-
+int RemoteConnection::set(const QString &key, const QString &value){
     QString str = QString("set %1 %2\n").arg(key).arg(value);
     writeDatagram(str.toUtf8(), target, dstPort);
     return 0;
 }
-
-void RemoteConnection::setTarget(const QString &targetIp)
-{
-    qDebug(__FUNCTION__);
-
+void RemoteConnection::setTarget(const QString &targetIp){
     if (targetIp == "Localhost" || targetIp.isEmpty())
         target = QHostAddress::LocalHost;
     else
         target = QHostAddress(targetIp);
 }
-
-void RemoteConnection::readPendingDatagrams()
-{
-    //qDebug(__FUNCTION__);
+void RemoteConnection::readPendingDatagrams(){
     QByteArray datagram;
 
 //    static QElapsedTimer timer;
