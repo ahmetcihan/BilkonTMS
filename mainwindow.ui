@@ -35,7 +35,7 @@
 </string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1409,6 +1409,44 @@
        </property>
       </widget>
      </widget>
+     <widget class="QPushButton" name="pushButton_read_from_device">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>30</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Read Parameters
+from the Device</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_write_to_device">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>90</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Write Parameters
+ to the Device</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -1448,20 +1486,6 @@
         </font>
        </property>
       </widget>
-     </widget>
-     <widget class="QPushButton" name="pushButton_read_parameter">
-      <property name="geometry">
-       <rect>
-        <x>610</x>
-        <y>30</y>
-        <width>141</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Read
-Parameter</string>
-      </property>
      </widget>
     </widget>
    </widget>

@@ -50,7 +50,6 @@ signals:
 public slots:
     void test_value_handler(QString val);
     void start_comm(void);
-    void read_parameter(void);
     void periodic_response_handler(QByteArray datagram);
     void set_gradient(int val);
     void tare_ch2(void);
@@ -60,6 +59,8 @@ public slots:
     void stop_test(void);
     void pause_test(void);
     void refresh_test(void);
+    void read_parameters_from_the_device(void);
+    void write_parameters_to_the_device(void);
 
 private:
     Ui::MainWindow *ui;

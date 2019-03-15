@@ -9,10 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     remote  = new RemoteConnection(8945,this);
 
-    remote->setTarget("10.10.255.177");
+    remote->setTarget("192.168.1.177");
 
     QTimer::singleShot(1000,this,SLOT(start_comm()));
-    connect(ui->pushButton_read_parameter,SIGNAL(clicked()),this,SLOT(read_parameter()));
     connect(remote,SIGNAL(periodic_response_handler(QByteArray)),this,SLOT(periodic_response_handler(QByteArray)));
     init_THEME();
 
@@ -27,9 +26,81 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_pause_test,SIGNAL(clicked()),this,SLOT(pause_test()));
     connect(ui->pushButton_refresh,SIGNAL(clicked()),this,SLOT(refresh_test()));
 
+    connect(ui->pushButton_read_from_device,SIGNAL(clicked()),this,SLOT(read_parameters_from_the_device()));
+    connect(ui->pushButton_write_to_device,SIGNAL(clicked()),this,SLOT(write_parameters_to_the_device()));
+
     connect(this, SIGNAL(test_value_tracker(QString)),this, SLOT(test_value_handler(QString)));
 
 }
+void MainWindow::read_parameters_from_the_device(void){
+    static u8 tmp = 0;
+    switch(tmp){
+    case 0:
+        remote->get("param.pace_rate");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 1:
+        remote->get("param.start_speed");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 2:
+        remote->get("param.max_load");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 3:
+        remote->get("param.failure_treshold");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 4:
+        remote->get("param.zero_suppression");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 5:
+        remote->get("param.break_percentage");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 6:
+        remote->get("param.dp.load");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 7:
+        remote->get("param.dp.ch2");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 8:
+        remote->get("param.dp.ch3");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 9:
+        remote->get("param.dp.ch4");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 10:
+        remote->get("param.dp.stress");
+        QTimer::singleShot(100,this,SLOT(read_parameters_from_the_device()));
+        tmp++;
+        break;
+    case 11:
+        remote->get("test.type");
+        tmp = 0;
+        break;
+    }
+
+}
+void MainWindow::write_parameters_to_the_device(void){
+
+}
+
 void MainWindow::test_value_handler(QString val){
     if(real_time.status == "Test is STOPPED"){
         ui->pushButton_start_test->setStyleSheet("min-width: 50px; min-height: 50px;"
@@ -213,10 +284,6 @@ void MainWindow::plot_graph(void){
 
     customPlot->replot();
 }
-void MainWindow::read_parameter(void){
-    remote->get("param.pace_rate");
-}
-
 void MainWindow::start_comm(void){
     qDebug(__FUNCTION__);
 
@@ -285,6 +352,67 @@ void MainWindow::periodic_response_handler(QByteArray datagram){
         ui->label_communication->setText("No communication");
         qDebug() << "başka veri";
         qDebug() << datagram;
+
+        QString str = datagram;
+        QString first_section = str.section(":",0,0);
+        QString second_section = str.section(":",1,1);
+        QString third_section = str.section(":",2,2);
+
+        if(first_section == "get"){
+            if(second_section == "param.pace_rate"){
+                ui->doubleSpinBox_pace_rate->setValue(third_section.toDouble());
+                ui->doubleSpinBox_pace_rate_mpa->setValue(1000*(double)third_section.toDouble()/(double)real_time.area);
+            }
+            else if(second_section == "param.start_speed"){
+                ui->spinBox_start_speed_percentage->setValue(third_section.toInt());
+            }
+            else if(second_section == "param.max_load"){
+                ui->doubleSpinBox_max_load->setValue(third_section.toDouble());
+            }
+            else if(second_section == "param.failure_treshold"){
+                ui->doubleSpinBox_load_treshold->setValue(third_section.toDouble());
+            }
+            else if(second_section == "param.zero_suppression"){
+                ui->doubleSpinBox_zero_suppression->setValue(third_section.toDouble());
+            }
+            else if(second_section == "param.break_percentage"){
+                ui->spinBox_break_percentage->setValue(third_section.toInt());
+            }
+            else if(second_section == "param.dp.load"){
+                ui->spinBox_dp_load->setValue(third_section.toInt());
+            }
+            else if(second_section == "param.dp.ch2"){
+                ui->spinBox_dp_ch2->setValue(third_section.toInt());
+            }
+            else if(second_section == "param.dp.ch3"){
+                ui->spinBox_dp_ch3->setValue(third_section.toInt());
+            }
+            else if(second_section == "param.dp.ch4"){
+                ui->spinBox_dp_ch4->setValue(third_section.toInt());
+            }
+            else if(second_section == "param.dp.stress"){
+                ui->spinBox_dp_stress->setValue(third_section.toInt());
+            }
+            else if(second_section == "test.type"){
+                if(third_section.toInt() == 0){
+                    ui->radioButton_compression->setChecked(true);
+                }
+                else if(third_section.toInt() == 1){
+                    ui->radioButton_flexural->setChecked(true);
+                }
+                else if(third_section.toInt() == 2){
+                    ui->radioButton_split_tensile->setChecked(true);
+                }
+            }
+        }
+        else if(first_section == "set"){
+            qDebug() << "inside set";
+        }
+        else{
+            qDebug() << "inside nothing";
+        }
+
+        //qDebug() << "section 0 0" << dene.section(":",0,0) << "section 1 1" << dene.section(":",1,1) << "section 2 2" << dene.section(":",2,2);
     }
 
 }
