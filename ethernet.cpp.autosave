@@ -208,8 +208,6 @@ void MainWindow::periodic_response_handler(QByteArray datagram){
     }
     else{
         ui->label_communication->setText("No communication");
-        //qDebug() << "başka veri";
-        //qDebug() << datagram;
 
         QString str = datagram;
         QString first_section = str.section(":",0,0);
@@ -263,15 +261,6 @@ void MainWindow::periodic_response_handler(QByteArray datagram){
                 }
             }
         }
-        else if(first_section == "set"){
-            qDebug() << "inside set";
-            qDebug() << datagram;
-        }
-        else{
-            qDebug() << "inside nothing";
-        }
-
-        //qDebug() << "section 0 0" << dene.section(":",0,0) << "section 1 1" << dene.section(":",1,1) << "section 2 2" << dene.section(":",2,2);
     }
 
 }
