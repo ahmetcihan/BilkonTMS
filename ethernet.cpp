@@ -145,7 +145,7 @@ void MainWindow::write_parameters_to_the_device(void){
 void MainWindow::start_comm(void){
     qDebug(__FUNCTION__);
 
-    remote->set("device_settings.stream.enable", "1");
+    remote->set("device_settings_liya.stream.enable", "1");
 
 }
 void MainWindow::periodic_response_handler(QByteArray datagram){
